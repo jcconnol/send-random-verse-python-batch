@@ -1,0 +1,14 @@
+service: random-bible-verse-lambda
+
+provider:
+  name: aws
+  runtime: python3.8
+  region: "us-east-2"
+
+functions:
+  scheduledLambda:
+    handler: send_random_verse.handler
+    description: A Lambda function to send bible verses every day at 6:45 am
+    events:
+      - schedule:
+          rate: cron(45 6 * * ? *)
